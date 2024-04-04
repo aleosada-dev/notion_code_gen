@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def test_fetch_database_schema():
+def test_fetch_database_schema() -> None:
     """
     Integration test for the fetch_database_schema function
     """
