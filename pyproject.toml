@@ -13,6 +13,7 @@ packages = [
 python = "^3.11"
 requests = "^2.31.0"
 python-dotenv = "^1.0.1"
+click = "^8.1.7"
 
 
 [tool.poetry.group.dev.dependencies]
