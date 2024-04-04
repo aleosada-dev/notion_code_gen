@@ -33,7 +33,7 @@ def test_default_properties(default_schema: dict, default_expected: str) -> None
     assert result == expected
 
 
-def test_number_propertie(default_schema: dict, default_expected: str) -> None:
+def test_number_property(default_schema: dict, default_expected: str) -> None:
     schema = default_schema
     schema["properties"] = schema["properties"] | {"Number": {"type": "number"}}
 
@@ -43,3 +43,16 @@ def test_number_propertie(default_schema: dict, default_expected: str) -> None:
 
     result = generate_python_class(schema)
     assert result == expected
+
+
+# TODO: Implement test_option_property
+def test_option_property(default_schema: dict, default_expected: str) -> None:
+    schema = default_schema
+    schema["properties"] = schema["properties"] | {
+        "Option": {
+            "type": "select",
+            "select": {"options": [{"name": "Option 1", "name": "Option 2"}]},
+        }
+    }
+
+    pass
