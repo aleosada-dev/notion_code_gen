@@ -75,6 +75,20 @@ def test_checkbox_property(default_schema: dict, default_expected: str) -> None:
     assert result == expected
 
 
+def test_relation_property(default_schema: dict, default_expected: str) -> None:
+    schema = default_schema
+    schema["properties"] = schema["properties"] | {
+        "Relation": {"type": "relation", "relation": {"database_id": "123"}}
+    }
+
+    expected = default_expected
+    expected += f"    title: str\n"
+    expected += f"    relation: list\n"
+
+    result = generate_python_class(schema)
+    assert result == expected
+
+
 # TODO: Implement test_option_property
 def test_option_property(default_schema: dict, default_expected: str) -> None:
     schema = default_schema
