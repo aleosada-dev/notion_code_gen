@@ -7,6 +7,8 @@ def generate_python_class(schema: dict) -> str:
     class_definition += f"\n\n"
     class_definition += f"@dataclass\n"
     class_definition += f"class {class_name}:\n"
+    class_definition += f"    database_id: str\n"
+    class_definition += f"    id: int\n"
 
     for prop_name, prop_details in properties.items():
         prop_name = prop_name.replace(" ", "_").lower()
@@ -15,5 +17,7 @@ def generate_python_class(schema: dict) -> str:
             class_definition += f"    {prop_name}: str\n"
         if prop_details["type"] == "title":
             class_definition += f"    {prop_name}: str\n"
+        if prop_details["type"] == "number":
+            class_definition += f"    {prop_name}: float\n"
 
     return class_definition
