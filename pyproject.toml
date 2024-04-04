@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "notioncodegen"
+version = "0.1.0"
+description = "Generate code for classes based in notion database schemas"
+authors = ["Alexandre Osada <alexandre.osada.dev@gmail.com>"]
+readme = "README.md"
+
+packages = [
+    { include = "notioncodegen", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+python-dotenv = "^1.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[tool.poetry.scripts]
+notioncodegen = "notioncodegen.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpaths = ["src"]
