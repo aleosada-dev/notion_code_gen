@@ -55,7 +55,13 @@ def generate_python_class(schema: dict) -> str:
             class_definition += (
                 f"    {prop_name_snake_case}: {class_name}{prop_name}Enum\n"
             )
+        if prop_details["type"] == "status":
+            class_definition += (
+                f"    {prop_name_snake_case}: {class_name}{prop_name}Enum\n"
+            )
         if prop_details["type"] == "date":
             class_definition += f"    {prop_name_snake_case}: pendulum.datetime\n"
+        if prop_details["type"] == "checkbox":
+            class_definition += f"    {prop_name_snake_case}: bool\n"
 
     return class_definition

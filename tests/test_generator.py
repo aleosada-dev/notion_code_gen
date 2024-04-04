@@ -63,6 +63,18 @@ def test_date_property(default_schema: dict, default_expected: str) -> None:
     assert result == expected
 
 
+def test_checkbox_property(default_schema: dict, default_expected: str) -> None:
+    schema = default_schema
+    schema["properties"] = schema["properties"] | {"Checkbox": {"type": "checkbox"}}
+
+    expected = default_expected
+    expected += f"    title: str\n"
+    expected += f"    checkbox: bool\n"
+
+    result = generate_python_class(schema)
+    assert result == expected
+
+
 # TODO: Implement test_option_property
 def test_option_property(default_schema: dict, default_expected: str) -> None:
     schema = default_schema
