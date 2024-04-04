@@ -45,6 +45,24 @@ def test_number_property(default_schema: dict, default_expected: str) -> None:
     assert result == expected
 
 
+def test_date_property(default_schema: dict, default_expected: str) -> None:
+    schema = default_schema
+    schema["properties"] = schema["properties"] | {"Date": {"type": "date"}}
+
+    expected = f"from dataclasses import dataclass\n"
+    expected += f"import pendulum\n"
+    expected += f"\n\n"
+    expected += f"@dataclass\n"
+    expected += f"class Test:\n"
+    expected += f"    database_id: str\n"
+    expected += f"    id: int\n"
+    expected += f"    title: str\n"
+    expected += f"    date: pendulum.datetime\n"
+
+    result = generate_python_class(schema)
+    assert result == expected
+
+
 # TODO: Implement test_option_property
 def test_option_property(default_schema: dict, default_expected: str) -> None:
     schema = default_schema
